@@ -1,5 +1,9 @@
 "use server";
 
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 export interface ContactFormState {
   success: boolean;
   message: string;
@@ -43,19 +47,35 @@ export async function submitContact(
     };
   }
 
-  // Simulate sending email (replace with actual email service)
-  // In production, integrate with services like Resend, SendGrid, or Nodemailer
   try {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await resend.emails.send({
+      from: "INUS Group Website <noreply@inus-group.com>",
+      to: "admin@inus-group.com",
+      replyTo: rawData.email,
+      subject: `Contact Form: Message from ${rawData.name}`,
+      html: `
+        <h2>New Contact Form Submission</h2>
+        <p><strong>Name:</strong> ${rawData.name}</p>
+        <p><strong>Email:</strong> ${rawData.email}</p>
+        <p><strong>Message:</strong></p>
+        <p>${rawData.message.replace(/\n/g, "<br>")}</p>
+      `,
+      text: `
+New Contact Form Submission
 
-    // Log for development (remove in production)
-    console.log("Contact form submission:", rawData);
+Name: ${rawData.name}
+Email: ${rawData.email}
+Message:
+${rawData.message}
+      `,
+    });
 
     return {
       success: true,
       message: "Thank you for your message! We'll get back to you soon.",
     };
-  } catch {
+  } catch (error) {
+    console.error("Email send error:", error);
     return {
       success: false,
       message: "Something went wrong. Please try again later.",
