@@ -5,6 +5,15 @@ import { headers } from "next/headers";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 // Simple in-memory rate limiting
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
 const RATE_LIMIT = 5;
@@ -42,6 +51,21 @@ function checkRateLimit(key: string): { allowed: boolean; remaining: number } {
 
   record.count++;
   return { allowed: true, remaining: RATE_LIMIT - record.count };
+}
+
+// Cleanup old rate limit entries every 10 minutes
+function cleanupRateLimits() {
+  const now = Date.now();
+  for (const [key, record] of rateLimitMap.entries()) {
+    if (now > record.resetTime) {
+      rateLimitMap.delete(key);
+    }
+  }
+}
+
+// Run cleanup periodically
+if (typeof setInterval !== "undefined") {
+  setInterval(cleanupRateLimits, 10 * 60 * 1000);
 }
 
 async function withTimeout<T>(
@@ -107,10 +131,10 @@ export async function submitContact(
         subject: `Contact Form: Message from ${rawData.name}`,
         html: `
           <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${rawData.name}</p>
-          <p><strong>Email:</strong> ${rawData.email}</p>
+          <p><strong>Name:</strong> ${escapeHtml(rawData.name)}</p>
+          <p><strong>Email:</strong> ${escapeHtml(rawData.email)}</p>
           <p><strong>Message:</strong></p>
-          <p>${rawData.message.replace(/\n/g, "<br>")}</p>
+          <p>${escapeHtml(rawData.message).replace(/\n/g, "<br>")}</p>
         `,
         text: `
 New Contact Form Submission

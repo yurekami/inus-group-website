@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     siteName: "INUS Group",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.svg",
         width: 1200,
         height: 630,
         alt: "INUS Group - Leading the Future Through Integration",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     title: "INUS Group | Leading the Future Through Integration",
     description:
       "Integrating logistics, finance, technology, trade, and real estate to drive innovation in global markets.",
-    images: ["/og-image.png"],
+    images: ["/og-image.svg"],
   },
   robots: {
     index: true,
