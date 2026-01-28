@@ -24,9 +24,11 @@ export function Ecosystem() {
             <div className="ecosystem-ring" />
             <div className="ecosystem-ring" />
             <div className="ecosystem-center">
-              <span style={{ color: "#18181b" }}>
-                {locale === "ko" ? "이너스" : "INUS"}
-              </span>
+              <img
+                src="/inus-logo.svg"
+                alt={locale === "ko" ? "이너스 그룹" : "INUS Group"}
+                className="ecosystem-logo"
+              />
             </div>
           </div>
 
