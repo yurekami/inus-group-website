@@ -35,6 +35,7 @@ export function ContactForm() {
           name="name"
           required
           minLength={2}
+          maxLength={100}
           className="form-input"
           placeholder="Your name"
           disabled={isPending}
@@ -53,6 +54,7 @@ export function ContactForm() {
           id="email"
           name="email"
           required
+          maxLength={254}
           className="form-input"
           placeholder="you@example.com"
           disabled={isPending}
@@ -71,6 +73,7 @@ export function ContactForm() {
           name="message"
           required
           minLength={10}
+          maxLength={5000}
           rows={4}
           className="form-input form-textarea"
           placeholder="How can we help you?"

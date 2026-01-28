@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useLanguage } from "../i18n";
 
 export function Hero() {
@@ -47,10 +48,13 @@ export function Hero() {
 
       <div className="hero-visual">
         <div className="hero-globe-minimal">
-          <img
+          <Image
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Earth_Western_Hemisphere_transparent_background.png/600px-Earth_Western_Hemisphere_transparent_background.png"
             alt="Global Network"
             className="globe-img"
+            width={600}
+            height={600}
+            priority
           />
         </div>
       </div>

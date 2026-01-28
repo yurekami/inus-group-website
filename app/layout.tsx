@@ -34,15 +34,24 @@ export const metadata: Metadata = {
       "Integrating logistics, finance, technology, trade, and real estate to drive innovation in global markets.",
     type: "website",
     locale: "en_US",
-    alternateLocale: "ko_KR",
+    alternateLocale: ["ko_KR"],
     url: "https://www.inus-group.com",
     siteName: "INUS Group",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "INUS Group - Leading the Future Through Integration",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "INUS Group | Leading the Future Through Integration",
     description:
       "Integrating logistics, finance, technology, trade, and real estate to drive innovation in global markets.",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,

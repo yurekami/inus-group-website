@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useLanguage } from "../i18n";
 
 const images = [
@@ -43,10 +44,13 @@ export function Subsidiaries() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img
+              <Image
                 src={images[index]}
                 alt={sub.name}
                 className="subsidiary-image"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                style={{ objectFit: "cover" }}
               />
               <div className="subsidiary-content">
                 <span className="subsidiary-label">{sub.label}</span>

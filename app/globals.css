@@ -1173,3 +1173,84 @@ html[data-locale="ko"] .footer-column h4 {
 html[data-locale="ko"] .nav-logo {
   letter-spacing: 0.05em;
 }
+
+/* ===== 404 AND ERROR PAGES ===== */
+.not-found-page,
+.error-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  padding: var(--space-lg);
+}
+
+.not-found-content,
+.error-content {
+  text-align: center;
+  max-width: 500px;
+}
+
+.not-found-code {
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 15vw, 10rem);
+  font-weight: 300;
+  color: var(--primary);
+  line-height: 1;
+  margin-bottom: var(--space-md);
+}
+
+.not-found-title,
+.error-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  margin-bottom: var(--space-sm);
+}
+
+.error-title {
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 300;
+  color: var(--primary);
+}
+
+.error-subtitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  margin-bottom: var(--space-sm);
+}
+
+.not-found-description,
+.error-description {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-lg);
+}
+
+/* ===== ACCESSIBILITY: REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-eyebrow,
+  .hero-title,
+  .hero-subtitle,
+  .hero-cta,
+  .globe-img {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .animate-on-scroll,
+  .stagger-children > * {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
