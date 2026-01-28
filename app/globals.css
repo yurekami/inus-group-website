@@ -468,6 +468,7 @@ body::before {
   cursor: pointer;
   text-decoration: none;
   color: inherit;
+  min-height: 400px;
 }
 
 .subsidiary-card:nth-child(1) { grid-column: span 7; }
