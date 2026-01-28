@@ -616,9 +616,8 @@ body::before {
 }
 
 .ecosystem-logo {
-  width: 70%;
+  width: 85%;
   height: auto;
-  max-width: 120px;
 }
 
 .ecosystem-features {
